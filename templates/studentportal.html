@@ -1,0 +1,198 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>iMac Portal</title>
+    {% load static %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> 
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"> </script>
+    <link href="static/portal.css" rel="stylesheet">
+    </head>
+    <body>
+        <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">
+            <img src="static/assets/SRMLogo.png" alt="Logo" width="100" height="60" class="d-inline-block align-text-centre">
+            iMac Portal
+          </a>
+          <a href="bookinghistory" class="btn btn-primary booking-history-btn" style="position: absolute; height: 40px;">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" fill="#ffffff" viewBox="0 0 512 512"><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg>
+          </a>
+          <a class="btn btn-primary" href="logout" role="button">Log Out</a>
+        </div>
+      </nav>
+      
+
+    <div class="body-container">
+        <div class="seat-graphic-card">
+            <form class='lab-form' method="post" action="loadlab">
+                <div class="close-labs-graphic-card" id="labs-graphic-card">
+                    {% csrf_token %}
+                    <div class="lab-label">
+                        <h1 style="position: absolute; font-size: 20px; top: 2px;">Lab {{lab_no}}</h1>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                        </svg>
+                    </div>
+                    <input type="text" name="lab-no" style="display:none" value={{lab_no}}/>
+                    <button class="lab-card1 tt" type="submit" data-bs-toggle="tooltip" title=" · macOS Monterey {version 12.1}&#013;· Apple M1&#013;· 16GB&#013;· 512GB" value="1"><h1 style="font-size: 15px; height: 15px;">Lab 1</h1></button>
+                    <button class="lab-card2 tt" type="submit" data-bs-toggle="tooltip" title=" · macOS Monterey {version 12.1}&#013;· Apple M1&#013;· 8GB&#013;· 256GB" value="2"><h1 style="font-size: 15px; height: 15px;">Lab 2</h1></button>
+                    <button class="lab-card3 tt" type="submit" data-bs-toggle="tooltip" title=" · macOS Monterey {version 12.1}&#013;· 2.3GHz Dual-Core Intel Core i5&#013;· 8GB 2133 MHz DDR4&#013;· Intel Iris Plus Graphics 640 1536MB&#013;· 256GB SSD" value="3"><h1 style="font-size: 15px; height: 15px;">Lab 3</h1></button>
+                    <button class="lab-card4 tt" type="submit" data-bs-toggle="tooltip" title=" · macOS Monterey {version 12.1}&#013;· 2.3GHz Dual-Core Intel Core i5&#013;· 8GB 2133 MHz DDR4&#013;· Intel Iris Plus Graphics 640 1536MB&#013;· 256GB SSD" value="4"><h1 style="font-size: 15px; height: 15px;">Lab 4</h1></button>
+                </div>
+                <div class="date-field">
+                    <h1 style="font-size: 15px; height: 15px;">Date</h1>
+                    <input type="date" name="date" class="form-control date" value="{{date}}"/>
+                </div>
+                <div class="time-from">
+                    <h1 style="font-size: 15px; height: 15px;">From</h1>
+                    <input type="time" name="time_from" class="form-control time timefrom" value="{{time_from}}"/>
+                </div>
+                <div class="time-till">
+                    <h1 style="font-size: 15px; height: 15px;">Till</h1>
+                    <input type="time" name="time_till" class="form-control time timetill" value="{{time_till}}"/>
+                </div>
+                <input class="btn btn-primary slot-search-btn" type="submit" value="search slot">
+            </form>
+
+
+            <h2>Hall Way</h2>
+            <div class="main-container">
+                {% for row, value in rows.items %}
+                    <div class="row">
+                    {% for sys in value %}
+                        {% if booked_seats == "all" and sys.sys_no != "Piller" %}
+                                <div class="btn btn-dark occupied-seat-btn">
+                                    {{sys.sys_no}}
+                                </div>
+                        {% elif sys.sys_no == "Piller" %}
+                                <div class="btn btn-warning pillar-btn" style="color: white;">Pillar</div>
+                        {% elif sys.sys_no in booked_seats %}
+                                <div class="btn btn-dark occupied-seat-btn">
+                                    {{sys.sys_no}}
+                                </div>
+                        {% else %}
+                                <div class="btn btn-light seat-btn">{{sys.sys_no}}</div>
+                        {% endif %}
+                    {% endfor %}
+                    </div>
+                {% endfor %}
+
+            </div>
+            {% if booked_seats == "all" %}
+                <div class="invalid-selection-glass"><h3>Please note: Mac computer bookings require a minimum advance notice of 2 days</h1></div>
+            {% endif %}
+        </div>
+
+        <form class="request-form" action="submitreq" method="post">
+            {% csrf_token %}
+            <h4 class="sysid">System No - </h4>
+            <input type="text" name="sys-no" style="display:none"/>
+            <input type="text" name="lab-no" style="display:none" value="{{lab_no}}"/>
+            <div class="date-field" style="display:none">
+                <h1 style="font-size: 15px; height: 15px;">Date</h1>
+                <input type="date" name="date" class="form-control reqdate" value="{{date}}"/>
+            </div>
+            <div class="time-from" style="display:none">
+                <h1 style="font-size: 15px; height: 15px;">From</h1>
+                <input type="time" name="time_from" class="form-control reqtimefrom" value="{{time_from}}"/>
+            </div>
+            <div class="time-till" style="display:none">
+                <h1 style="font-size: 15px; height: 15px;">Till</h1>
+                <input type="time" name="time_till" class="form-control reqtimetill" value="{{time_till}}" />
+            </div>
+            <div class="reason">
+                <label class="form-label">Reason</label>
+                <textarea class="form-control reason-text" name="reason"></textarea>
+            </div>
+            <input class="btn btn-primary submit-btn" type="submit" style="display: flex; position: absolute; top: 365px;" value="Submit Request">
+        </form>
+
+    </div>
+
+    <script>
+        document.addEventListener('click', function(event) {
+            var labsGraphicCard = document.getElementById('labs-graphic-card');
+            var labLabel = document.querySelector('.lab-label');
+            if (event.target !== labLabel && !labLabel.contains(event.target)) {
+              labsGraphicCard.classList.remove('open-labs-graphic-card');
+            }
+          });
+    </script>
+
+    <script>
+        const dialog = document.querySelector(".close-labs-graphic-card");
+        const btn = document.querySelector(".lab-label");
+
+        btn.addEventListener("click", () => {
+            dialog.classList.toggle("open-labs-graphic-card");
+        });
+        
+        
+    </script>
+    <script>  
+        $(function () {  
+            $('#time').datetimepicker({  
+                format: 'DD/MM/YYYY hh:mm A'  
+            });  
+        });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    // Add a click event listener to all buttons with the class 'btn-primary'
+    $('.seat-btn').click(function() {
+      // Remove the 'btn-clicked' class from all buttons
+      $('.seat-btn').removeClass('btn-clicked');
+      
+      // Add the 'btn-clicked' class to the clicked button
+      $(this).addClass('btn-clicked');
+    });
+  });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('.lab-card1').click(function() {
+            var lab_no = $(this).text();
+            $('input[name="lab-no"]').val("1");
+        });
+    });
+    $(document).ready(function() {
+        $('.lab-card2').click(function() {
+            var lab_no = $(this).text();
+            $('input[name="lab-no"]').val("2");
+        });
+    });
+    $(document).ready(function() {
+        $('.lab-card3').click(function() {
+            var lab_no = $(this).text();
+            $('input[name="lab-no"]').val("3");
+        });
+    });
+    $(document).ready(function() {
+        $('.lab-card4').click(function() {
+            var lab_no = $(this).text();
+            $('input[name="lab-no"]').val("4");
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('.seat-btn').click(function() {
+            var sys_no = $(this).text();
+            $('.sysid').text("System No - " + sys_no);
+            $('input[name="sys-no"]').val(sys_no);
+            $('.selected-btn').removeClass('selected-btn');
+            $(this).toggleClass('selected-btn');
+        });
+    });
+</script>
+
+  </body>
+</html>

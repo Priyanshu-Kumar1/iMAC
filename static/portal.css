@@ -1,0 +1,639 @@
+
+@font-face {
+    font-family: 'Sen';
+    src: url("fonts/Sen.ttf");
+}
+
+@font-face {
+    font-family: 'IBMPlexSansCondensed';
+    src: url("fonts/IBMPlexSans-Bold.ttf");
+}
+
+
+nav{
+    display: flex;
+    justify-self: center;
+    height: 75px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+}
+
+.navbar-brand{
+    font-family: "IBMPlexSansCondensed";
+    color: #363b3e;
+
+}
+
+.booking-history-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 125px;
+}
+
+.body-container{
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    top: 10%;
+
+}
+
+.seat-graphic-card{
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    top: 30px;
+    width: 90%;
+    height: 600px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+}
+
+.open-labs-graphic-card{
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    width: 220px;
+    height: 220px;
+    border-radius: 10px;
+    border: none;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+    animation: openLabs 0.5s ease-in-out forwards;
+    z-index: 3;
+}
+
+.lab-label{
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    top: 0px;
+    width: 100%;
+    height: 30px;
+    z-index: 3;
+}
+
+.bi-caret-down-fill{
+    display: flex;
+    position: absolute;
+    right: 30px;
+    z-index: 3;
+}
+
+.lab-card1{
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 50px;
+    top: 80px;
+    left: 25px;
+    background-color: #fcffd8;
+    border-radius: 10px;
+    border: 2px solid #eeff31;
+    z-index: 3;
+}
+
+.lab-card2{
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 50px;
+    top: 80px;
+    right: 25px;
+    background-color: #fcffd8;
+    border-radius: 10px;
+    border: 2px solid #eeff31;
+    z-index: 3;
+}
+
+.lab-card3{
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 50px;
+    top: 140px;
+    left: 25px;
+    background-color: #fcffd8;
+    border-radius: 10px;
+    border: 2px solid #eeff31;
+    z-index: 3;
+}
+
+.lab-card4{
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 50px;
+    top: 140px;
+    right: 25px;
+    background-color: #fcffd8;
+    border-radius: 10px;
+    border: 2px solid #eeff31;
+    z-index: 3;
+}
+
+.close-labs-graphic-card{
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    width: 220px;
+    height: 30px;
+    top: 30px;
+    left: 20px;
+    border-radius: 10px;
+    border: none;
+    overflow: hidden;
+    z-index: 3;
+}
+
+.close-labs-graphic-card:hover{
+    cursor: pointer;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+}
+
+.container {
+    display: grid;
+    grid-template-rows: repeat(2, 40px);
+    align-items: center;
+    justify-content: center;
+    height: 70%;
+    width: 50%;
+  }
+
+h2{
+    position: absolute;
+    top: 120px;
+    left: 25%;
+}
+
+.main-container {
+    position: absolute;
+    display: grid;
+    grid-template-rows: repeat(8, 45px);
+    align-items: center;
+    justify-content: center;
+    top: 200px;
+    height: 70%;
+    width: 50%;
+    left: 5%;
+}
+
+.row {
+    display: grid;
+    justify-self: center;
+    align-items: center;
+    grid-template-columns: repeat(9, 9%);
+    width: 100%;
+    gap: 20px;
+}
+
+.seat {
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    height: 40px;
+    width: 39px;
+    border-radius: 5px;
+    padding: 5px;
+  }
+
+.seat-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    border: 1px solid #0d6efd;
+    display: flex;
+    align-items: center;
+    width: 50px;
+}
+
+.seat-btn:hover{
+    border: 1px solid #212121;
+    background-color: #0d6efd;
+    color: #ffffff;
+}
+
+.seat-btn .pc path {
+    fill: #373642;
+  }
+
+.seat-btn:hover .pc path {
+    fill: #ffffff;
+}
+
+.occupied-seat-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #212121;
+    border: none;
+}
+
+
+.occupied-seat-btn .pc path {
+    fill: #ffffff;
+  }
+
+.selected-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0d6efd;
+    color: #ffffff;
+    border: none;
+}
+
+.selected-btn .pc path {
+    fill: #ffffff;
+}
+
+.occupied-seat-btn{
+    display: flex;
+    align-items: center;
+    width: 50px;
+    height: 35px;
+}
+
+.invalid-selection-glass{
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    height: 80%;
+    bottom: 1%;
+    color: white;
+    background-color: rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    border: none;
+    z-index: 3;
+}
+
+.request-form{
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+    height: 400px;
+    right: 10%;
+    top: 170px;
+}
+
+h4{
+    position: absolute;
+    left: 8%;
+    top: 0px;
+    font-family: "IBMPlexSansCondensed";
+    font-size: 20px;
+    color: #363b3e;
+    margin-bottom: 40px;
+}
+
+.lab-form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 20px;
+    left: 8%;
+    width: 90%;
+    height: 40%;
+}
+
+.date{
+    display: flex;
+    position: absolute;
+    margin-top: 20px;
+}
+
+.date-field{
+    display: flex;
+    position: absolute;
+    height: 20px;
+    top: 10px;
+    width: 140px;
+    left: 25%;
+}
+
+.time{
+    display: flex;
+    position: absolute;
+    margin-top: 20px;
+}
+
+.time-from{
+    display: flex;
+    position: absolute;
+    height: 48px;
+    top: 10px;
+    width: 100px;
+    left: 39%;
+}
+
+.time-till{
+    display: flex;
+    position: absolute;
+    top: 10px;
+    height: 48px;
+    width: 100px;
+    left: 49.4%;
+}
+
+.reason{
+    display: block;
+    position: absolute;
+    height: 120px;
+    width: 90%;
+    top: 55%;
+    left: 8%;
+}
+
+.reason-text{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height: 100px;
+    width: 100%;
+    margin-top: 25px;
+}
+
+.slot-search-btn{
+    display: flex;
+    position: absolute;
+    top: 30px;
+    left: 61%;
+}
+
+.pillar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffc400;
+    font-size: 10px;
+    width: 35px;
+    height: 35px;
+    border-radius: 0px, 0px, 2px, 2px;
+
+}
+
+.space{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    font-size: 12px;
+    width: 5px;
+    height: 35px;
+    border-radius: 0px, 0px, 2px, 2px;
+    margin-left: 10px;
+    margin-right: 10px;
+
+}
+
+
+
+.row1{
+    position: absolute;
+    top: 170px;
+
+}
+
+.row2{
+    position: absolute;
+    top: 270px;
+
+}
+
+.row3{
+    position: absolute;
+    top: 370px;
+
+}
+
+.separator{
+    background-color: #363b3e;
+    width: 100%;
+    height: 2px;
+}
+
+.tooltip.show{
+    display: flex;
+    justify-content: left;
+    font-size: 12px;
+}
+
+.tooltip-inner{
+    display: flex;
+    justify-content: left;
+}
+
+@keyframes openLabs {
+    0% {
+        height: 30px;
+    }
+    100% {
+        height: 220px;
+    }
+}
+
+
+@media only screen and (max-width: 1275px){
+
+    .request-form{
+        top: 750px;
+        right: auto;
+    }
+
+    .seat-graphic-card{
+        height: 700px;
+    }
+
+    h2{
+        position: absolute;
+        top: 230px;
+        left: auto;
+    }
+
+    .close-labs-graphic-card{
+        left: auto;
+        width: 150px;
+        margin-right: 0px;
+        left: 5%;
+    }
+
+    .lab-form{
+        left: auto;
+    }
+
+    .slot-search-btn{
+        left: auto;
+        top: 140px;
+    }
+
+    .main-container{
+        width: 100%;
+        left: auto;
+        top: 300px;
+    }
+
+    .date-field{
+        left: 31%;
+    }
+    
+    .time-from{
+        left: 55%;
+    }
+    .time-till{
+        left: 73%;
+    }
+
+}
+
+@media only screen and (max-width: 950px){
+
+    .request-form{
+        right: auto;
+    }
+
+
+    .main-container{
+        width: 100%;
+        left: auto;
+    }
+
+}
+
+@media only screen and (max-width: 790px){
+
+    .request-form{
+        right: auto;
+    }
+
+    h2{
+        position: absolute;
+        left: auto;
+    }
+
+
+    .lab-card1{
+        height: 30px;
+        width: 55px;
+        left: 15px;
+    }
+
+    .lab-card2{
+        height: 30px;
+        width: 55px;
+        right: 15px;
+    }
+
+    .lab-card3{
+        height: 30px;
+        width: 55px;
+        left: 15px;
+        top: 120px;
+    }
+
+    .lab-card4{
+        height: 30px;
+        width: 55px;
+        right: 15px;
+        top: 120px;
+    }
+
+    h1{
+        font-size: 8px;
+    }
+
+    .main-container{
+        width: 100%;
+        left: auto;
+    }
+
+    .row{
+        gap: 5px;
+    }
+
+    .seat-btn{
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
+    }
+    .pillar-btn{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 30px;
+        height: 30px;
+        font-size: 8px;
+        padding: 0px;
+    }
+
+    @keyframes openLabs {
+        0% {
+            height: 30px;
+        }
+        100% {
+            height: 170px;
+        }
+    }
+    
+
+    .date-field{
+        left: 50%;
+    }
+    
+    .time-from{
+        top: 77px;
+        left: 10%;
+    }
+    .time-till{
+        top: 77px;
+        left: 55%;
+    }
+
+}
+
+@media only screen and (max-width: 600px){
+    .request-form{
+        right: auto;
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 500px){
+    .request-form{
+        right: auto;
+        width: 100%;
+    }
+
+    .booking-history-btn{
+        right: 100px;
+    }
+}
+
+@media only screen and (max-width: 380px){
+    .request-form{
+        right: auto;
+        width: 100%;
+    }
+}

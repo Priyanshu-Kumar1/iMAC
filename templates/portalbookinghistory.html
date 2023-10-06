@@ -1,0 +1,202 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>iMac Portal</title>
+    {% load static %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> 
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"> </script>
+    <link rel="stylesheet" href="static/adminportal.css">
+  </head>
+  <body>
+    <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">
+            <img src="static/assets/SRMLogo.png" alt="Logo" width="100" height="60" class="d-inline-block align-text-centre">
+            iMac Portal
+          </a>
+          <a class="btn btn-primary" href="logout" role="button">Log Out</a>
+        </div>
+      </nav>
+      
+
+    <div class="body-container">
+        <h3 class="name" margin="30px">Name - {{name}}</h3>
+                  {% if acc_type == "Admin" %}
+                  <form action="get-report" method="POST">
+                  {% csrf_token %}
+                  <div class="date-field-from">
+                    <h1 style="font-size: 15px; height: 15px;">From</h1>
+                    <input type="date" name="date_from" class="form-control date" value="{{date_from}}"/>
+                  </div>
+                  <div class="date-field-till">
+                    <h1 style="font-size: 15px; height: 15px;">To</h1>
+                    <input type="date" name="date_till" class="form-control date" value="{{date_till}}"/>
+                  </div>
+                  <input class="btn btn-primary get-report-btn" type="submit" value="get report">
+                  </form>
+            <div class="history-table">
+                <div class="booking-request">
+                  <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">Lab no</th>
+                          <th scope="col">Date</th>
+                          <th scope="col">Name</th>
+                          <th scope="col">Email</th>
+                          <th scope="col">Booked By</th>
+                          <th scope="col">Sys. no.</th>
+                          <th scope="col">From</th>
+                          <th scope="col">Till</th>
+                          <th scope="col">Reason</th>
+                          <th scope="col">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for key, value in booking_history.items %}
+                        {% for date, time in value.items %}
+                        {% for timerange, seat in time.items %}
+                        {% for seatno, details in seat.items %}
+                        <tr>
+                          <form action="approve-booking" method="POST">
+                          {% csrf_token %}
+                          {% load my_filters %}
+                          {% with serial=serial|inc %}
+                          <th scope="row">{{serial}}</th>
+                          <td>{{key}}</td>
+                          <td>{{date}}</td>
+                          <td>{{details.name}}</td>
+                          <td>{{details.email}}</td>
+                          <td>Booked by {{details.acc_type}}</td>
+                          <td>{{seatno}}</td>
+                          <td>{{details.time_from}}</td>
+                          <td>{{details.time_till}}</td>
+                          <td>{{details.reason}}</td>
+                          <td>
+                            {% load my_filters %}
+                            {% if date|is_date_greater_than_one_day %}
+                            <Button class="btn btn-primary" type="submit" name="bookingid" value={{key}}>
+                              <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
+                                <style>svg{fill:#ffffff}</style>
+                                <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/>
+                              </svg>
+                            </Button>
+                            {% else %}
+                            <Button class="btn btn-primary" type="submit" name="bookingid" value={{key}} disabled>
+                              <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
+                                <style>svg{fill:#ffffff}</style>
+                                <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/>
+                              </svg>
+                            </Button>
+                            {% endif %}
+                          </form>
+                        </tr>
+                        {% endwith %}
+                        {% endfor %}
+                        {% endfor %}
+                        {% endfor %}
+                        {% endfor %}
+                      {% else %}
+                      <div class="history-table">
+                        <div class="booking-request">
+                          <table class="table">
+                          <thead>
+                            <tr>
+                              <th scope="col">#</th>
+                              <th scope="col">Lab no</th>
+                              <th scope="col">Date</th>
+                              <th scope="col">Sys. no.</th>
+                              <th scope="col">From</th>
+                              <th scope="col">Till</th>
+                              <th scope="col">Status</th>
+                              <th scope="col">Reason</th>
+                              <th scope="col">Action</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {% for lab_no, value in booking_history.items %}
+                            {% for date, time in value.items %}
+                            {% for timerange, seat in time.items %}
+                            {% for seatno, details in seat.items %}
+                            <tr>
+                              <form action="cancel-booking" method="POST">
+                              {% csrf_token %}
+                              {% load my_filters %}
+                              {% with serial=serial|inc %}
+                              <th scope="row">{{serial}}</th>
+                              <td name="lab_no">{{lab_no}}</td>
+                              <td name="date">{{date}}</td>
+                              <td name="seatno">{{seatno}}</td>
+                              <td name="time_from">{{details.time_from}}</td>
+                              <td name="time_till">{{details.time_till}}</td>
+                              
+                              <input name="lab_no" style="display:none" value="{{lab_no}}"/>
+                              <input name="date" style="display:none" value="{{date}}"/>
+                              <input name="seatno" style="display:none" value="{{seatno}}"/>
+                              <input name="time_from" style="display:none" value="{{details.time_from}}"/>
+                              <input name="time_till" style="display:none" value="{{details.time_till}}"/>
+
+                              <td>{{details.status}}</td>
+                              <td>{{details.reason}}</td>
+                              <td>
+                                {% load my_filters %}
+                                {% if date|is_date_greater_than_one_day and details.status == 'Pending...' %}
+                                <Button class="btn btn-primary" type="submit" name="bookingid">
+                                  <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
+                                    <style>svg{fill:#ffffff}</style>
+                                    <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/>
+                                  </svg>
+                                </Button>
+                                {% else %}
+                                <Button class="btn btn-primary" type="submit" name="bookingid" disabled>
+                                  <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
+                                    <style>svg{fill:#ffffff}</style>
+                                    <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/>
+                                  </svg>
+                                </Button>
+                            {% endif %}
+                          </td>
+                          </form>
+                        </tr>
+                      {% endwith %}
+                      {% endfor %}
+                      {% endfor %}
+                      {% endfor %}
+                      {% endfor %}
+                      {% endif %}
+                    </tbody>
+                  </table>
+              </div>
+            </div>
+    </div>
+
+    {% with serial=serial|reset %}
+    {% endwith %}
+
+    <script>
+        const dialog = document.querySelector(".close-labs-graphic-card");
+        const btn = document.querySelector(".lab-label");
+
+        btn.addEventListener("click", () => {
+            dialog.classList.toggle("open-labs-graphic-card");
+        });
+        
+        const seat = document.querySelectorAll(".pc");
+        seat.addEventListener("click", () => {
+            seat.fill="red";
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script>  
+        $(function () {  
+            $('#time').datetimepicker({  
+                format: 'DD/MM/YYYY hh:mm A'  
+            });  
+        });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,162 @@
+
+@font-face {
+    font-family: 'Sen';
+    src: url("fonts/Sen.ttf");
+}
+
+@font-face {
+    font-family: 'IBMPlexSansCondensed';
+    src: url("fonts/IBMPlexSans-Bold.ttf");
+}
+
+
+nav{
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+}
+
+.navbar-brand{
+    font-family: "IBMPlexSansCondensed";
+    color: #363b3e;
+
+}
+
+.booking-history-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.body-container{
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    width: 100%;
+    height: 90vh;
+    top: 10%;
+
+}
+
+
+.name{
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    font-family: "IBMPlexSansCondensed";
+    font-size: 20px;
+    color: #363b3e;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.request{
+    display: block;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 30px;
+    width: 100%;
+    color: #363b3e;
+    margin-top: 100px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+.history-table{
+    display: block;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 80px;
+    width: 100%;
+    color: #363b3e;
+    margin-top: 100px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+.user-request{
+    display: block;
+    width: 100%;
+    color: #363b3e;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+}
+
+.booking-request{
+    display: block;
+    width: 100%;
+    color: #363b3e;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+} 
+
+
+.date{
+    display: flex;
+    position: absolute;
+    margin-top: 20px;
+}
+
+.date-field-from{
+    display: flex;
+    position: absolute;
+    height: 20px;
+    top: 90px;
+    width: 140px;
+    left: 12%;
+}
+
+.date-field-till{
+    display: flex;
+    position: absolute;
+    height: 20px;
+    top: 90px;
+    width: 140px;
+    left: 25%;
+}
+
+.time{
+    display: flex;
+    position: absolute;
+    margin-top: 20px;
+}
+
+.time-from{
+    display: flex;
+    position: absolute;
+    height: 48px;
+    top: 90px;
+    width: 100px;
+    left: 39%;
+}
+
+.time-till{
+    display: flex;
+    position: absolute;
+    top: 90px;
+    height: 48px;
+    width: 100px;
+    left: 49.4%;
+}
+
+.get-report-btn{
+    display: flex;
+    position: absolute;
+    top: 110px;
+    left: 61%;
+}
+
+table{
+    width: 100%;
+    border-radius: 10px;
+}
+
+@media print {
+    table {
+        font-size: 10px;
+    }
+
+    .btn{
+        display: none;
+    }
+}
