@@ -1,0 +1,29 @@
+LoadFile "D:/Python/Python310/python311.dll"
+LoadModule wsgi_module "D:/Python/Python310/Lib/site-packages/mod_wsgi/server/mod_wsgi.cp311-win_amd64.pyd"
+WSGIPythonHome "D:/Python/Python310"
+
+WSGIScriptAlias / "D:/MyCode/MainProjects/iman-main/imac/imac/wsgi.py"
+
+WSGIPythonHome "C:\Users\HP\AppData\Local\Microsoft\WindowsApps\python.exe"
+
+WSGIPythonPath "D:/MyCode/MainProjects/iman-main/imac"
+
+
+
+<Directory "D:/MyCode/MainProjects/iman-main/imac/imac">
+
+<Files wsgi.py>
+
+Require all granted
+
+</Files>
+
+</Directory>
+
+Alias /static "D:\MyCode\MainProjects\iman-main\imac\static"
+
+<Directory "D:\MyCode\MainProjects\iman-main\imac\static">
+
+Require all granted
+
+</Directory>
